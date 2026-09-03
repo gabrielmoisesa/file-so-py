@@ -1,3 +1,6 @@
+# Generated / local JSON files
+info_so.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
