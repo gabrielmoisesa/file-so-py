@@ -7,24 +7,25 @@ def show_menu() -> None:
     print("2. Ler arquivo")
     print("3. Renomear arquivo")
     print("4. Excluir arquivo")
-    print("5. Sair")
+    print("5. Mudar o arquivo/caminho padrão")
+    print("6. Sair")
 
 def main() -> None:
   file_path = "info_so.json"
 
   while True:
      show_menu()
-     selected_option = input("Escolha uma opção: ").strip()
+     selected_option = input("> Escolha uma opção: ").strip()
+     print()
 
      if selected_option == "1":
         info = get_os_info()
-        print()
         create_file(file_path, info)
 
      elif selected_option == "2":
         data = read_file(file_path)
         if data:
-            print(f"\n======== {file_path} ========")
+            print(f"======== {file_path} ========")
             for chave, valor in data.items():
                 print(f"{chave}: {valor}")
 
@@ -37,6 +38,11 @@ def main() -> None:
         delete_file(file_path)
 
      elif selected_option == "5":
+        print(f"Caminho padrão atual: {file_path}")
+        new_path = input("Novo caminho padrão: ").strip()
+        file_path = new_path
+        
+     elif selected_option == "6":
         print("Encerrando o programa...")
         break
 
