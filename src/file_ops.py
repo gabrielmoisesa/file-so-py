@@ -27,3 +27,12 @@ def rename_file(current_path: str, new_path: str) -> bool:
   except FileExistsError:
     print(f"Erro: já existe um arquivo com o nome '{new_path}'.")
   return False
+
+def delete_file(path: str) -> None:
+  try:
+    os.remove(path)
+    print(f"Arquivo '{path}' excluído com sucesso.")
+  except FileNotFoundError:
+    print(f"Erro: o arquivo '{path}' não existe.")
+  except PermissionError:
+    print(f"Erro: sem permissão para excluir '{path}'.")
