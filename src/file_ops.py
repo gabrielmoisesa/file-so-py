@@ -1,4 +1,5 @@
 import json
+import os
 
 def create_file(path: str, data: dict) -> None:
   with open(path, "w", encoding="utf-8") as file:
@@ -15,3 +16,14 @@ def read_file(path: str) -> dict | None:
   except json.JSONDecodeError:
     print(f"Erro: o arquivo '{path}' não contém um JSON válido.")
     return None
+
+def rename_file(current_path: str, new_path: str) -> bool:
+  try:
+    os.rename(current_path, new_path)
+    print(f"Arquivo renomeado para '{new_path}'.")
+    return True
+  except FileNotFoundError:
+    print(f"Erro: o arquivo '{current_path}' não existe.")
+  except FileExistsError:
+    print(f"Erro: já existe um arquivo com o nome '{new_path}'.")
+  return False
