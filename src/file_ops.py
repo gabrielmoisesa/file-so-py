@@ -2,9 +2,16 @@ import json
 import os
 
 def create_file(path: str, data: dict) -> None:
-  with open(path, "w", encoding="utf-8") as file:
-    json.dump(data, file, indent=4, ensure_ascii=False)
-  print(f"Arquivo '{path}' criado com sucesso.")
+  try:
+    with open(path, "w", encoding="utf-8") as file:
+      json.dump(data, file, indent=4, ensure_ascii=False)
+    print(f"Arquivo '{path}' criado com sucesso.")
+  except PermissionError:
+    print(f"Erro: sem permissão para criar '{path}'.")
+  except TypeError:
+    print(f"Erro: os dados informados não podem ser convertidos para JSON.")
+  except OSError as e:
+    print(f"Erro ao criar o arquivo '{path}': {e}")
 
 def read_file(path: str) -> dict | None:
   try:
