@@ -8,15 +8,16 @@ def show_menu() -> None:
     print("3. Renomear arquivo")
     print("4. Excluir arquivo")
     print("5. Mudar o arquivo/caminho padrão")
-    print("6. Sair")
+    print("m. Exibir menu")
+    print("q. Sair")
 
 def main() -> None:
   file_path = "info_so.json"
+  show_menu()
 
   while True:
-     show_menu()
-     selected_option = input("> Escolha uma opção: ").strip()
      print()
+     selected_option = input("> Escolha uma opção: ").strip()
 
      if selected_option == "1":
         info = get_os_info()
@@ -41,8 +42,11 @@ def main() -> None:
         print(f"Caminho padrão atual: {file_path}")
         new_path = input("Novo caminho padrão: ").strip()
         file_path = new_path
+
+     elif selected_option == "m":
+        show_menu()
         
-     elif selected_option == "6":
+     elif selected_option == "q":
         print("Encerrando o programa...")
         break
 
