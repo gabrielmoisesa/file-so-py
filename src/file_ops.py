@@ -22,9 +22,13 @@ def read_file(path: str) -> dict | None:
     return None
   except json.JSONDecodeError:
     print(f"Erro: o arquivo '{path}' não contém um JSON válido.")
+    return None
   except PermissionError:
     print(f"Erro: sem permissão para ler o arquivo '{path}'.")
-  return None
+    return None
+  except OSError as e:
+    print(f"Erro ao ler o arquivo '{path}': {e}")
+    return None
 
 def rename_file(current_path: str, new_path: str) -> bool:
   try:
@@ -37,6 +41,8 @@ def rename_file(current_path: str, new_path: str) -> bool:
     print(f"Erro: já existe um arquivo com o nome '{new_path}'.")
   except PermissionError:
     print(f"Erro: sem permissão para renomear o arquivo '{current_path}'.")
+  except OSError as e:
+    print(f"Erro ao renomear o arquivo '{current_path}': {e}")
   return False
 
 def delete_file(path: str) -> None:
@@ -47,3 +53,5 @@ def delete_file(path: str) -> None:
     print(f"Erro: o arquivo '{path}' não existe.")
   except PermissionError:
     print(f"Erro: sem permissão para excluir o arquivo '{path}'.")
+  except OSError as e:
+    print(f"Erro ao excluir o arquivo '{path}': {e}")
