@@ -1,5 +1,5 @@
 # Generated / local JSON files
-info_so.json
+*.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
